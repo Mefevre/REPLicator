@@ -5,6 +5,7 @@ REPL_script_path="$(dirname $(readlink -f $0))/"
 
 # REQUIREMENT
 source $REPL_script_path/Sources/Center.sh
+source $REPL_script_path/Sources/Prog_command.sh
 REPL_mode=""
 
 # Select mode with options

@@ -8,7 +8,7 @@ source $REPL_script_path/Sources/Center.sh
 source $REPL_script_path/Sources/Prog_command.sh
 REPL_mode=""
 
-# Select mode with options
+# get option with her parameter
 while [[ $# -gt 0 ]]; do
     case $1 in
         -e) 
@@ -28,10 +28,13 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+# set mode if not set
 if [[ "$REPL_mode" = "" ]]; then
+    # init var loop for have an answer of user
     loop_mode=1
     while [[ $loop_mode -eq 1 ]]; do
 
+        # Menu of select MODE
         echo "Vous entrez dans REPLicator ! "
         echo "Veuillez-vous choisir un mode d'execution pour REPLicator :" 
         echo "
@@ -40,6 +43,7 @@ if [[ "$REPL_mode" = "" ]]; then
         "
         echo "Vous pouvez lancer le programme avec les commandes \"./REPLicator -a\" pour le mode assisté et \"REPLicator -e\" pour le mode expert."
         echo -n "[Default 2] : "
+        # Wait enter user
         read
         case $REPLY in
             1)
@@ -59,6 +63,7 @@ if [[ "$REPL_mode" = "" ]]; then
     done
 fi
 
+# assistance for set basic var of the env
 if [[ "$REPL_mode" = "assiste" ]]; then
 
     echo "Set the different variables of this environment :"

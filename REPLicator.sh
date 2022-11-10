@@ -114,6 +114,8 @@ while [[ $exit_mod -eq 1 ]]; do
             echo help ;;
         meteo)
             echo meteo ;;
+        cool)
+            cool ;;
         q|exit|quit)
             exit_mod=0 ;;
         *)

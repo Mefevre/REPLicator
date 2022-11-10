@@ -85,3 +85,8 @@ help() {
 meteo() {
     //
 }
+
+# RELAX FUNCT
+cool() {
+    curl parrot.live
+}

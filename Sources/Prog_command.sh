@@ -96,7 +96,7 @@ mode() {
 
 # Show city weather
 meteo() {
-    //
+    curl wttr.in/$1
 }
 
 # RELAX FUNCT

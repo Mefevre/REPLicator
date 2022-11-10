@@ -115,7 +115,7 @@ while [[ $exit_mod -eq 1 ]]; do
         mode)
             mode ;;
         meteo)
-            echo meteo ;;
+            meteo ${REPLY[@]} ;;
         cool)
             cool ;;
         q|exit|quit)

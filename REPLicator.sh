@@ -86,8 +86,8 @@ if [[ "${REPL_var["mode"]}" = "assiste" ]]; then
     echo "Set the different variables of this environment :"
     echo -n "Target => "
     read REPL_var["TARGET"]
-    echo -n "other => "
-    read REPL_var
+    echo -n "Port => "
+    read REPL_var["PORT"]
 
 fi
 
@@ -99,9 +99,11 @@ while [[ $exit_mod -eq 1 ]]; do
     unset REPLY[0]
     case $comm in
         set)
-            echo set ;;
+            set ${REPLY[@]} ;;
+        del)
+            del ${REPLY[@]} ;;
         show)
-            echo show ;;
+            show ;;
         exec)
             echo exec ;;
         list)

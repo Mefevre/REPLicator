@@ -1,11 +1,16 @@
 # Add Var to the env
 set() {
-    ${REPL_var["$1"]}=$2
+    REPL_var["$1"]=$2
     echo -e "La variable ${RED}$1 ${WHITE}a bien été configurée à ${RED}$2"
 }
 
-# display all vat env
-show(){
+# Delete var to the env
+del() {
+    unset REPL_var["$1"]
+}
+
+# display all var env
+show() {
     echo -e "Variable enregistrer dans cette environnement : "
     for i in ${!REPL_var[@]}; do
         echo "  $i = ${REPL_var["$i"]}"

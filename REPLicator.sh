@@ -112,6 +112,8 @@ while [[ $exit_mod -eq 1 ]]; do
             install ${REPLY[@]} ;;
         help)
             echo help ;;
+        mode)
+            mode ;;
         meteo)
             echo meteo ;;
         cool)
@@ -121,4 +123,5 @@ while [[ $exit_mod -eq 1 ]]; do
         *)
             echo -e "$ROSE Invalid arguments $END"
     esac
+    echo ""
 done

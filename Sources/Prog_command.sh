@@ -81,6 +81,19 @@ help() {
     //
 }
 
+# Switch mode between assiste <=> expert
+mode() {
+    if [[ ${REPL_var["mode"]} = "expert" ]]; then
+        center "$GREEN $   Assisté Mode   $ $END"
+        REPL_var["mode"]="assiste"
+        REPL_var["mode_color"]=$GREEN
+    else
+        center "$RED $   Expert Mode   $ $END"
+        REPL_var["mode"]="expert"
+        REPL_var["mode_color"]=$RED
+    fi
+}
+
 # Show city weather
 meteo() {
     //

@@ -73,7 +73,7 @@ update_soft_installer() {
 
 # install tools supported
 install() {
-    apt install $1 -y
+    sudo apt install $1 -y
 }
 
 # Show doc prog

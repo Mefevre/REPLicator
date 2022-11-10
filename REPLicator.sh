@@ -109,7 +109,7 @@ while [[ $exit_mod -eq 1 ]]; do
         list)
             list ${REPLY[@]} ;;
         install)
-            echo install ;;
+            install ${REPLY[@]} ;;
         help)
             echo help ;;
         meteo)

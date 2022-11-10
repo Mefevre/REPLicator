@@ -93,7 +93,7 @@ fi
 
 # loop of prog
 while [[ $exit_mod -eq 1 ]]; do
-    echo -e -n "${REPL_var['mode_color']} `date '+%A %m %B %Y — %H:%M:%S'` $> $END"
+    echo -e -n "${REPL_var['mode_color']}`date '+%A %m %B %Y — %H:%M:%S'` $> $END"
     read -a REPLY
     comm=${REPLY[0]}
     unset REPLY[0]
@@ -120,8 +120,12 @@ while [[ $exit_mod -eq 1 ]]; do
             cool ;;
         q|exit|quit)
             exit_mod=0 ;;
+        "")
+            ;;
         *)
             echo -e "$ROSE Invalid arguments $END"
     esac
-    echo ""
+    if [[ "$comm" != "" ]]; then
+        echo ""
+    fi
 done

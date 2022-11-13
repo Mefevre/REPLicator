@@ -1,10 +1,11 @@
 #!/bin/bash
 
 #SET VAR SCRIPT
-REPL_script_path="$(dirname $(readlink -f $0))/"
+VERSION="1.0.0"
+REPL_script_path="$(dirname $(readlink -f $0))"
 exit_mod=1
 declare -A REPL_var=( ['mode']="" )
-declare -A REPL_soft=(['nmap']=2 ['gobuster']=2 ['sqlmap']=2)
+declare -A REPL_soft=( ['nmap']=2 ['gobuster']=2 ['sqlmap']=2 )
 
 #COLOR VAR
 BLUE='\033[0;34m'
@@ -15,6 +16,7 @@ WHITE='\033[0;37m'
 YELLOW='\033[0;33m'
 PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
+BLACK='\033[0;30m'
 END='\033[m'
 
 # REQUIREMENT
@@ -44,7 +46,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # set mode if not set
-if [[ "${REPL_var["mode"]}" = "" ]]; then
+if [[ "${REPL_var["mode"]}" == "" ]]; then
     # init var loop for have an answer of user
     loop_mode=1
     while [[ $loop_mode -eq 1 ]]; do
@@ -81,7 +83,7 @@ if [[ "${REPL_var["mode"]}" = "" ]]; then
 fi
 
 # assistance for set basic var of the env
-if [[ "${REPL_var["mode"]}" = "assiste" ]]; then
+if [[ "${REPL_var["mode"]}" == "assiste" ]]; then
 
     echo "Set the different variables of this environment :"
     echo -n "Target => "
@@ -111,7 +113,7 @@ while [[ $exit_mod -eq 1 ]]; do
         install)
             install ${REPLY[@]} ;;
         help)
-            echo help ;;
+            help ${REPLY[@]} ;;
         mode)
             mode ;;
         meteo)

@@ -58,12 +58,13 @@ list() {
 
 update_soft_installer_all() {
     for i in ${!REPL_soft[@]}; do
-        REPL_soft['$i']=$(update_soft_installer $i)
+        update_soft_installer $i
+        REPL_soft["$i"]=$?
     done
 }
 
 update_soft_installer() {
-    which $1
+    which $1 > /dev/null
     if [[ $? -eq 0 ]]; then
         return 1
     else
@@ -83,7 +84,7 @@ help() {
 
 # Switch mode between assiste <=> expert
 mode() {
-    if [[ ${REPL_var["mode"]} = "expert" ]]; then
+    if [[ ${REPL_var["mode"]} == "expert" ]]; then
         center "$GREEN $   Assisté Mode   $ $END"
         REPL_var["mode"]="assiste"
         REPL_var["mode_color"]=$GREEN

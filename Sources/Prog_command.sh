@@ -19,7 +19,17 @@ show() {
 
 # execute tools
 exec() {
-    //
+    echo manger
+    case $1 in
+        nmap)
+            # Execution de NMAP avec les options -sS=TCP SYNK -sU=SCAN UDP -Pn=NO PING -v=verbose -O=detection OS -p=PORT
+            sudo nmap -sS -sU -Pn -v -O -p ${REPL_var["PORT"]} ${REPL_var["TARGET"]} -oN ${REPL_var["OUTPUTFILE"]}
+            ;;
+        gobuster)
+            ;;
+        sqlmap)
+            ;;
+    esac
 }
 
 # show tools installed and supported FIRT VUE

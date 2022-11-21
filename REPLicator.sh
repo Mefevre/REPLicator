@@ -4,7 +4,7 @@
 VERSION="1.0.0"
 REPL_script_path="$(dirname $(readlink -f $0))"
 exit_mod=1
-declare -A REPL_var=( ['mode']="" )
+declare -A REPL_var=( ['mode']="" ['OUTPUTFILE']="/dev/null")
 declare -A REPL_soft=( ['nmap']=2 ['gobuster']=2 ['sqlmap']=2 )
 
 #COLOR VAR
@@ -90,6 +90,11 @@ if [[ "${REPL_var["mode"]}" == "assiste" ]]; then
     read REPL_var["TARGET"]
     echo -n "Port => "
     read REPL_var["PORT"]
+    echo -n "Fichier de sortie [/dev/null] : "
+    read
+    if [[ $REPLY != "" ]]; then
+        REPL_var["OUTPUTFILE"]=$REPLY
+    fi
 
 fi
 
@@ -107,7 +112,7 @@ while [[ $exit_mod -eq 1 ]]; do
         show)
             show ;;
         exec)
-            echo exec ;;
+            exec ${REPLY[@]} ;;
         list)
             list ${REPLY[@]} ;;
         install)

@@ -13,7 +13,7 @@ del() {
 show() {
     echo -e "Variable enregistrer dans cette environnement : "
     for i in ${!REPL_var[@]}; do
-        echo "  $i = ${REPL_var["$i"]}"
+        echo "      $i = ${REPL_var["$i"]}"
     done
 }
 

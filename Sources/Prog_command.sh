@@ -19,7 +19,6 @@ show() {
 
 # execute tools
 exec() {
-    echo manger
     case $1 in
         nmap)
             # Execution de NMAP avec les options -sS=TCP SYNK -sU=SCAN UDP -Pn=NO PING -v=verbose -O=detection OS -p=PORT
@@ -28,6 +27,8 @@ exec() {
         gobuster)
             ;;
         sqlmap)
+            sqlmap -u ${REPL_var["TARGET"]} -a --dump-format ${REPL_var["output_dump"]}
+            echo -e "\n\nVous pouvez voir la sortie du script ici : $PURPLE/home/$USER/.local/share/sqlmap/output/MONSITE.FR$END\n"
             ;;
     esac
 }

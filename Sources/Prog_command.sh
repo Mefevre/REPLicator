@@ -25,6 +25,13 @@ exec() {
             sudo nmap -sS -sU -Pn -v -O -p ${REPL_var["PORT"]} ${REPL_var["TARGET"]} -oN ${REPL_var["OUTPUTFILE"]}
             ;;
         gobuster)
+            if [[ "$2" == "dns" ]]; then
+                gobuster dns -d ${REPL_var["TARGET"]} -t ${REPL_var["threads"]} -w ${REPL_var["wordlist_dns"]}
+            elif [[ "$2" == "dir" ]]; then
+                gobuster dir -u ${REPL_var["TARGET"]} -t ${REPL_var["threads"]} -w ${REPL_var["wordlist_dir"]}
+            else
+                echo -e "$RED $2 : PARAMETRE INCORRECT$END"
+            fi
             ;;
         sqlmap)
             sqlmap -u ${REPL_var["TARGET"]} -a --dump-format ${REPL_var["output_dump"]}

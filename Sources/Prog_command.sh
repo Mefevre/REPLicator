@@ -21,14 +21,19 @@ show() {
 exec() {
     case $1 in
         nmap)
-            # Execution de NMAP avec les options -sS=TCP SYNK -sU=SCAN UDP -Pn=NO PING -v=verbose -O=detection OS -p=PORT
-            sudo nmap -sS -sU -Pn -v -O -p ${REPL_var["PORT"]} ${REPL_var["TARGET"]} -oN ${REPL_var["OUTPUTFILE"]}
+            if [[ "$2" == "IP" ]]; then
+                # Execution de nmap pour le scan IP
+                sudo nmap -sP ${REPL_var["TARGET"]}/${REPL_var["mask"]}
+            else
+                # Execution de NMAP avec les options -sS=TCP SYNK -sU=SCAN UDP -Pn=NO PING -v=verbose -O=detection OS -p=PORT
+                sudo nmap -sS -sU -Pn -v -O -p ${REPL_var["PORT"]} ${REPL_var["TARGET"]} -oN ${REPL_var["OUTPUTFILE"]}
+            fi
             ;;
         gobuster)
             if [[ "$2" == "dns" ]]; then
                 gobuster dns -d ${REPL_var["TARGET"]} -t ${REPL_var["threads"]} -w ${REPL_var["wordlist_dns"]}
             elif [[ "$2" == "dir" ]]; then
-                gobuster dir -u ${REPL_var["TARGET"]} -t ${REPL_var["threads"]} -w ${REPL_var["wordlist_dir"]}
+                gobuster dir -k -u ${REPL_var["TARGET"]} -t ${REPL_var["threads"]} -w ${REPL_var["wordlist_dir"]} --random-agent -b 302,404 -d
             else
                 echo -e "$RED $2 : PARAMETRE INCORRECT$END"
             fi

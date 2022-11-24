@@ -7,3 +7,5 @@ echo -e "       - python3"
 sudo apt install  python3
 echo -e "       - curl"
 sudo apt install curl
+
+echo -e "Installation complette !"

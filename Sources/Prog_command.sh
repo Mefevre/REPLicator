@@ -97,7 +97,16 @@ update_soft_installer() {
 
 # install tools supported
 install() {
-    sudo apt install $1 -y
+    i=1
+    allInstall=""
+    while [[ $i -le $# ]]; do
+        if [[ ${REPL_soft["$1"]} -eq 2 ]]; then
+            allInstall="$allInstall $1"
+        fi
+        shift
+    done
+    echo -e "Installation de :$allInstall"
+    sudo apt install$allInstall -y
 }
 
 # Show doc prog

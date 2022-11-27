@@ -4,7 +4,7 @@
 VERSION="1.0.0"
 REPL_script_path="$(dirname $(readlink -f $0))"
 exit_mod=1
-declare -A REPL_var=( ['mode']="" ['OUTPUTFILE']="/dev/null" ['output_dump']="html" ['wordlist_dir']="$REPL_script_path/Sources/SecLists-master/Discovery/Web-Content/common.txt" ['wordlist_dns']="$REPL_script_path/Sources/SecLists-master/Discovery/DNS/shubs-subdomains.txt" ['threads']="100" ['mask']="24")
+declare -A REPL_var=( ['mode']="" ['OUTPUTFILE']="/dev/null" ['output_dump']="html" ['wordlist_dir']="$REPL_script_path/Sources/SecLists-master/Discovery/Web-Content/common.txt" ['wordlist_dns']="$REPL_script_path/Sources/SecLists-master/Discovery/DNS/shubs-subdomains.txt" ['threads']="100" ['mask']="24" ['TARGET']="" ['PORT']="")
 declare -A REPL_soft=( ['nmap']=2 ['gobuster']=2 ['sqlmap']=2 )
 
 #COLOR VAR

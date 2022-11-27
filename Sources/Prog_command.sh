@@ -1,7 +1,18 @@
 # Add Var to the env
 set() {
-    REPL_var["$1"]=$2
-    echo -e "La variable ${RED}$1 ${WHITE}a bien été configurée à ${RED}$2"
+    echo $1
+    for i in ${!REPL_var[@]}; do
+        echo $i
+        if [[ "$1" == "$i" ]];then
+            REPL_var["$i"]=$2
+            echo -e "La variable ${GREEN}$1 ${WHITE}a bien été configurée à ${GREEN}$2"
+            return 0
+        fi
+    done
+
+    echo -e "${ROSE}Impossible de set la variable $1 : La variariable n'éxiste pas !$END"
+    return 1
+
 }
 
 # Delete var to the env

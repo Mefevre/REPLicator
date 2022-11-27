@@ -22,6 +22,7 @@ END='\033[m'
 # REQUIREMENT
 source $REPL_script_path/Sources/Center.sh
 source $REPL_script_path/Sources/Prog_command.sh
+source $REPL_script_path/Sources/ToLower.sh
 
 # get option with her parameter
 while [[ $# -gt 0 ]]; do

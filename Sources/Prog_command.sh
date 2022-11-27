@@ -1,11 +1,9 @@
 # Add Var to the env
 set() {
-    echo $1
     for i in ${!REPL_var[@]}; do
-        echo $i
-        if [[ "$1" == "$i" ]];then
+        if [[ "`toLower $1`" == "`toLower $i`" ]];then
             REPL_var["$i"]=$2
-            echo -e "La variable ${GREEN}$1 ${WHITE}a bien été configurée à ${GREEN}$2"
+            echo -e "La variable ${GREEN}$i ${WHITE}a bien été configurée à ${GREEN}$2"
             return 0
         fi
     done

@@ -1,5 +1,9 @@
 # Add Var to the env
 set() {
+    if [[ "`toLower $1`" == "mode" ]]; then
+        echo -e "${ROSE}Impossible de set la variable MODE : Autorisation non permise !$END"
+        return 1
+    fi
     for i in ${!REPL_var[@]}; do
         if [[ "`toLower $1`" == "`toLower $i`" ]];then
             REPL_var["$i"]=$2

@@ -55,6 +55,13 @@ exec() {
             sqlmap -u ${REPL_var["TARGET"]} -a --dump-format ${REPL_var["output_dump"]}
             echo -e "\n\nVous pouvez voir la sortie du script ici : $PURPLE/home/$USER/.local/share/sqlmap/output/MONSITE.FR$END\n"
             ;;
+        medusa)
+            if [[ ${REPL_var["list_hosts"]} == "" ]]; then
+                medusa -t 50 -h ${REPL_var["TARGET"]} -U ${REPL_var["list_users"]} -P ${REPL_var["list_password"]} -M ${REPL_var["module"]}
+                return 0
+            fi
+            medusa -t 50 -H ${REPL_var["list_hosts"]} -U ${REPL_var["list_users"]} -P ${REPL_var["list_password"]} -M ${REPL_var["module"]}
+            ;;
     esac
 }
 

@@ -4,8 +4,8 @@
 VERSION="1.0.0"
 REPL_script_path="$(dirname $(readlink -f $0))"
 exit_mod=1
-declare -A REPL_var=( ['mode']="" ['OUTPUTFILE']="/dev/null" ['output_dump']="html" ['wordlist_dir']="$REPL_script_path/Sources/SecLists-master/Discovery/Web-Content/common.txt" ['wordlist_dns']="$REPL_script_path/Sources/SecLists-master/Discovery/DNS/shubs-subdomains.txt" ['threads']="100" ['mask']="24" ['TARGET']="" ['PORT']="")
-declare -A REPL_soft=( ['nmap']=2 ['gobuster']=2 ['sqlmap']=2 )
+declare -A REPL_var=( ['mode']="" ['OUTPUTFILE']="/dev/null" ['output_dump']="html" ['wordlist_dir']="$REPL_script_path/Sources/SecLists-master/Discovery/Web-Content/common.txt" ['wordlist_dns']="$REPL_script_path/Sources/SecLists-master/Discovery/DNS/shubs-subdomains.txt" ['threads']="100" ['mask']="24" ['TARGET']="" ['PORT']="" ['list_hosts']="" ['list_users']="$REPL_script_path/Sources/SecLists-master/Usernames/top-usernames-shortlist.txt" ['list_password']="$REPL_script_path/Sources/SecLists-master/Passwords/Common-Credentials/best1050.txt" ['module']="ssh" )
+declare -A REPL_soft=( ['nmap']=2 ['gobuster']=2 ['sqlmap']=2 ['medusa']=2 )
 
 #COLOR VAR
 BLUE='\033[0;34m'
@@ -103,6 +103,7 @@ fi
 while [[ $exit_mod -eq 1 ]]; do
     echo -e -n "${REPL_var['mode_color']}`date '+%A %m %B %Y — %H:%M:%S'` $> $END"
     read -a REPLY
+    echo "${REPLY[@]}" >> $REPL_script_path/Sources/.history
     comm=${REPLY[0]}
     unset REPLY[0]
     case $comm in

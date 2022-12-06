@@ -19,7 +19,17 @@ set() {
 
 # Delete var to the env
 del() {
-    REPL_var["$1"]=""
+    if [[ "`toLower $1`" == "mode" ]]; then
+        echo -e "${ROSE}Impossible de supprimer la variable MODE : Autorisation non permise !$END"
+        return 1
+    fi
+    for i in ${!REPL_var[@]}; do
+        if [[ "`toLower $1`" == "`toLower $i`" ]];then
+            REPL_var["$1"]=""
+            echo -e "La variable ${GREEN}$i ${WHITE}a bien été supprimée à ${GREEN}$2"
+            return 0
+        fi
+    done
 }
 
 # display all var env

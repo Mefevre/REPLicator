@@ -23,6 +23,8 @@ END='\033[m'
 source $REPL_script_path/Sources/Center.sh
 source $REPL_script_path/Sources/Prog_command.sh
 source $REPL_script_path/Sources/ToLower.sh
+source $REPL_script_path/Sources/mode/expert.sh
+source $REPL_script_path/Sources/mode/assiste.sh
 
 # get option with her parameter
 while [[ $# -gt 0 ]]; do
@@ -101,40 +103,9 @@ fi
 
 # loop of prog
 while [[ $exit_mod -eq 1 ]]; do
-    echo -e -n "${REPL_var['mode_color']}`date '+%A %m %B %Y — %H:%M:%S'` $> $END"
-    read -a REPLY
-    echo "${REPLY[@]}" >> $REPL_script_path/Sources/.history
-    comm=${REPLY[0]}
-    unset REPLY[0]
-    case $comm in
-        set)
-            set ${REPLY[@]} ;;
-        del)
-            del ${REPLY[@]} ;;
-        show)
-            show ;;
-        exec)
-            exec ${REPLY[@]} ;;
-        list)
-            list ${REPLY[@]} ;;
-        install)
-            install ${REPLY[@]} ;;
-        help)
-            help ${REPLY[@]} ;;
-        mode)
-            mode ;;
-        meteo)
-            meteo ${REPLY[@]} ;;
-        cool)
-            cool ;;
-        q|exit|quit)
-            exit_mod=0 ;;
-        "")
-            ;;
-        *)
-            echo -e "$ROSE Invalid arguments $END"
-    esac
-    if [[ "$comm" != "" ]]; then
-        echo ""
+    if [[ "${REPL_var['mode']}" == "expert" ]]; then
+        expert
+    else
+        assiste
     fi
 done

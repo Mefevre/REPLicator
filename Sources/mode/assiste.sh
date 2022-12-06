@@ -21,7 +21,48 @@ assiste() {
     unset REPLY[0]
     case $comm in
         1)
-            set ${REPLY[@]} ;;
+            tmp=1
+            echo -e "Liste des variables disponnibles : "
+            for i in ${!REPL_var[@]}; do
+                echo "      $tmp - $i"
+                tmp=$((tmp+1))
+            done
+            echo -e -n "Entrée de la variable a parametrer : "
+            read var
+            case $var in
+                1)
+                    var="mode_color";;
+                2)
+                    var="mask";;
+                3)
+                    var="list_users";;
+                4)
+                    var="list_hosts";;
+                5)
+                    var="threads";;
+                6)
+                    var="PORT";;
+                7)
+                    var="list_password";;
+                8)
+                    var="OUTPUTFILE";;
+                9)
+                    var="wordlist_dir";;
+                10)
+                    var="wordlist_dns";;
+                12)
+                    var="output_dump";;
+                13)
+                    var="module";;
+                14)
+                    var="TARGET";;
+                *)
+                    echo -e "$ROSE Entree interdite !$END"
+                    return 1
+            esac
+            echo -e -n "Entrée la nouvelle valeur de cette variable : "
+            read val
+            set $var $val ;;
         2)
             del ${REPLY[@]} ;;
         3)

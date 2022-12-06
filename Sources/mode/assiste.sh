@@ -39,6 +39,39 @@ control_var() {
                     return 1
             esac
 }
+control_soft() {
+    update_soft_installer_all
+    tmp=1
+    echo -e "listedes programmes : "
+    for i in ${!REPL_soft[@]}; do
+        if [[ ${REPL_soft["$i"]} -eq 1 ]]; then
+            echo -n "   $tmp. $i"
+            echo ""
+            
+        fi
+        tmp=$((tmp+1))
+    done
+    boucle=1
+    while [[ $boucle -eq 1 ]]; do
+        echo -e -n "Entrée le numéro du programme : "
+        read soft
+        case $soft in
+            1)
+                soft="sqlmap";;
+            2)
+                soft="medusa";;
+            3)
+                soft="nmap";;
+            4)
+                soft="gobuster";;
+        esac
+        boucle=0
+        if [[ ${REPL_soft["$i"]} -ne 1 ]];then
+            echo -e "$ROSE Entrée invalide ! $END"
+            boucle=1
+        fi
+    done
+}
 assiste() {
     echo -e "Action disponnibles :
 
@@ -72,42 +105,58 @@ assiste() {
         3)
             show ;;
         4)
-            update_soft_installer_all
-            tmp=1
-            echo -e "list of compatible programs : "
-            for i in ${!REPL_soft[@]}; do
-                if [[ ${REPL_soft["$i"]} -eq 1 ]]; then
-                    echo -n "   $tmp. $i"
-                    echo ""
-                    
-                fi
-                tmp=$((tmp+1))
-            done
-            boucle=1
-            while [[ $boucle -eq 1 ]]; do
-                echo -e -n "Entrée le numéro du programme a executer : "
-                read soft
-                case $soft in
-                    1)
-                        soft="sqlmap";;
-                    2)
-                        soft="medusa";;
-                    3)
-                        soft="nmap";;
-                    4)
-                        soft="gobuster";;
-                esac
-                boucle=0
-                if [[ ${REPL_soft["$i"]} -ne 1 ]];then
-                    echo -e "$ROSE Entrée invalide ! $END"
-                    boucle=1
-                fi
-            done
-            exec $soft ;;
+            control_soft
+            option=""
+            if [[ "$soft" == "nmap" ]];then
+                echo ""
+                echo "Options disponible dans NMAP :
+                1 - PORT : scann les ports d'un hôte
+                2 - IP : fait une découverte réseaux
+                "
+                boucle=1
+                while [[ $boucle -eq 1 ]]; do
+                    echo -n "Entrée le numéro de l'option : "
+                    read
+                    case $REPLY in
+                        1)
+                            option="PORT"
+                            boucle=0 ;;
+                        2)
+                            option="IP"
+                            boucle=0 ;;
+                        *)
+                            echo -e "$ROSE Entrée invalide ! $END" ;;
+                    esac
+                done
+            fi
+            if [[ "$soft" == "nmap" ]];then
+                echo ""
+                echo "Options disponible dans GOBUSTER :
+                1 - DIR : recherche de l'arboraissance d'un site internet
+                2 - DNS : recherche des sous-domaines
+                "
+                boucle=1
+                while [[ $boucle -eq 1 ]]; do
+                    echo -n "Entrée le numéro de l'option : "
+                    read
+                    case $REPLY in
+                        1)
+                            option="DIR"
+                            boucle=0 ;;
+                        2)
+                            option="DNS"
+                            boucle=0 ;;
+                        *)
+                            echo -e "$ROSE Entrée invalide ! $END" ;;
+                    esac
+                done
+            fi
+            exec $soft $option ;;
         5)
             list ${REPLY[@]} ;;
         6)
-            install ${REPLY[@]} ;;
+            control_soft
+            install $soft ;;
         7)
             help ${REPLY[@]} ;;
         8)

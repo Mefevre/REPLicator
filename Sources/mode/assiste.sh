@@ -72,7 +72,38 @@ assiste() {
         3)
             show ;;
         4)
-            exec ${REPLY[@]} ;;
+            update_soft_installer_all
+            tmp=1
+            echo -e "list of compatible programs : "
+            for i in ${!REPL_soft[@]}; do
+                if [[ ${REPL_soft["$i"]} -eq 1 ]]; then
+                    echo -n "   $tmp. $i"
+                    echo ""
+                    
+                fi
+                tmp=$((tmp+1))
+            done
+            boucle=1
+            while [[ $boucle -eq 1 ]]; do
+                echo -e -n "Entrée le numéro du programme a executer : "
+                read soft
+                case $soft in
+                    1)
+                        soft="sqlmap";;
+                    2)
+                        soft="medusa";;
+                    3)
+                        soft="nmap";;
+                    4)
+                        soft="gobuster";;
+                esac
+                boucle=0
+                if [[ ${REPL_soft["$i"]} -ne 1 ]];then
+                    echo -e "$ROSE Entrée invalide ! $END"
+                    boucle=1
+                fi
+            done
+            exec $soft ;;
         5)
             list ${REPLY[@]} ;;
         6)

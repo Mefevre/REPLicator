@@ -19,7 +19,7 @@ set() {
 
 # Delete var to the env
 del() {
-    unset REPL_var["$1"]
+    REPL_var["$1"]=""
 }
 
 # display all var env

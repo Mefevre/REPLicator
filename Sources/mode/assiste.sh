@@ -68,7 +68,7 @@ assiste() {
             set $var $val ;;
         2)
             control_var
-            del ${REPLY[@]} ;;
+            del $var ;;
         3)
             show ;;
         4)

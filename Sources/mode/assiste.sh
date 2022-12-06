@@ -2,7 +2,7 @@ control_var() {
     tmp=1
             echo -e "Liste des variables disponnibles : "
             for i in ${!REPL_var[@]}; do
-                echo "      $tmp - $i"
+                echo -e "     $YELLOW $tmp -$BLUE $i$END"
                 tmp=$((tmp+1))
             done
             echo -e -n "Entrée le numéro de la variable : "
@@ -45,7 +45,7 @@ control_soft() {
     echo -e "listedes programmes : "
     for i in ${!REPL_soft[@]}; do
         if [[ ${REPL_soft["$i"]} -eq 1 ]]; then
-            echo -n "   $tmp. $i"
+            echo -e -n "   $YELLOW $tmp -$BLUE $i$END"
             echo ""
             
         fi
@@ -73,24 +73,27 @@ control_soft() {
     done
 }
 assiste() {
+    echo -e "$GREEN"
+    figlet " REPLicator "
+    echo -e "$END"
     echo -e "Action disponnibles :
 
-    1 - parametrer une variable
-    2 - supprimer une variable
-    3 - affichier toutes les variables
-    4 - lancer un programme
-    5 - lister les programmes installés
-    6 - installer un programme
-    7 - afficher l'aide
-    8 - changer de mode
-    9 - affichier la meteo local
-    10 - ...
-    q - quitter le programme
+    $YELLOW 1 -$BLUE parametrer une variable$END
+    $YELLOW 2 -$BLUE supprimer une variable$END
+    $YELLOW 3 -$BLUE affichier toutes les variables$END
+    $YELLOW 4 -$BLUE lancer un programme$END
+    $YELLOW 5 -$BLUE lister les programmes installés$END
+    $YELLOW 6 -$BLUE installer un programme$END
+    $YELLOW 7 -$BLUE afficher l'aide$END
+    $YELLOW 8 -$BLUE changer de mode$END
+    $YELLOW 9 -$BLUE affichier la meteo local$END
+    $YELLOW 10 -$BLUE ...$END
+    $YELLOW q -$BLUE quitter le programme$END
     "
 
     echo -e -n "${REPL_var['mode_color']}Entrée le numéro de votre choix $> $END"
     read -a REPLY
-    echo "${REPLY[@]}" >> $REPL_script_path/Sources/.history
+    echo ""
     comm=${REPLY[0]}
     unset REPLY[0]
     case $comm in
@@ -109,9 +112,9 @@ assiste() {
             option=""
             if [[ "$soft" == "nmap" ]];then
                 echo ""
-                echo "Options disponible dans NMAP :
-                1 - PORT : scann les ports d'un hôte
-                2 - IP : fait une découverte réseaux
+                echo -e "Options disponible dans NMAP :
+                $YELLOW 1 -$BLUE PORT : scann les ports d'un hôte$END
+                $YELLOW 2 -$BLUE IP : fait une découverte réseaux$END
                 "
                 boucle=1
                 while [[ $boucle -eq 1 ]]; do
@@ -129,11 +132,11 @@ assiste() {
                     esac
                 done
             fi
-            if [[ "$soft" == "nmap" ]];then
+            if [[ "$soft" == "gobuster" ]];then
                 echo ""
-                echo "Options disponible dans GOBUSTER :
-                1 - DIR : recherche de l'arboraissance d'un site internet
-                2 - DNS : recherche des sous-domaines
+                echo -e "Options disponible dans GOBUSTER :
+                $YELLOW 1 -$BLUE DIR : recherche de l'arboraissance d'un site internet$END
+                $YELLOW 2 -$BLUE DNS : recherche des sous-domaines$END
                 "
                 boucle=1
                 while [[ $boucle -eq 1 ]]; do

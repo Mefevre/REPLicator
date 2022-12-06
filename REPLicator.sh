@@ -89,11 +89,11 @@ fi
 if [[ "${REPL_var["mode"]}" == "assiste" ]]; then
 
     echo "Set the different variables of this environment :"
-    echo -n "Target => "
+    echo -e -n "$YELLOW Target =>$END "
     read REPL_var["TARGET"]
-    echo -n "Port => "
+    echo -e -n "$YELLOW Port =>$END "
     read REPL_var["PORT"]
-    echo -n "Fichier de sortie [/dev/null] : "
+    echo -e -n "$YELLOW Fichier de sortie [/dev/null] =>$END "
     read
     if [[ $REPLY != "" ]]; then
         REPL_var["OUTPUTFILE"]=$REPLY

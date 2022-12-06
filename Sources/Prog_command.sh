@@ -26,7 +26,7 @@ del() {
     for i in ${!REPL_var[@]}; do
         if [[ "`toLower $1`" == "`toLower $i`" ]];then
             REPL_var["$1"]=""
-            echo -e "La variable ${GREEN}$i ${WHITE}a bien été supprimée à ${GREEN}$2"
+            echo -e "La variable ${GREEN}$i ${WHITE}a bien été$GREEN supprimée$END"
             return 0
         fi
     done
@@ -92,14 +92,14 @@ list() {
         echo -e "This programs are installed : "
         for i in $@; do
             if [[ ${REPL_soft["$i"]} -eq 1 ]]; then
-                echo -e "   - $i               $GREEN[INSTALLED]$END"
+                echo -e "   -$BLUE $i               $GREEN[INSTALLED]$END"
             fi
         done
     else
         echo -e "list of compatible programs : "
         for i in ${!REPL_soft[@]}; do
             if [[ ${REPL_soft["$i"]} -ne 0 ]]; then
-                echo -n "   - $i    "
+                echo -e -n "   -$BLUE $i    $END6"
                 if [[ ${REPL_soft["$i"]} -eq 1 ]]; then
                     echo -e -n "           $GREEN[INSTALLED]$END"
                 fi

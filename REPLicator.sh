@@ -26,6 +26,17 @@ source $REPL_script_path/Sources/ToLower.sh
 source $REPL_script_path/Sources/mode/expert.sh
 source $REPL_script_path/Sources/mode/assiste.sh
 
+# Bannier bvn
+echo ""
+figlet "REPLicator" | lolcat
+echo -n "     version : " | lolcat
+echo "$VERSION"
+echo -n "     Sources : " | lolcat
+echo "https://github.com/Mefevre/REPLicator"
+echo "
+------------------------------------------------------
+" | lolcat
+
 # get option with her parameter
 while [[ $# -gt 0 ]]; do
     case $1 in

@@ -68,9 +68,9 @@ if [[ "${REPL_var["mode"]}" == "" ]]; then
         # Menu of select MODE
         echo "Vous entrez dans REPLicator ! "
         echo "Veuillez-vous choisir un mode d'execution pour REPLicator :" 
-        echo "
-        1. Expert Mode
-        2. Assisté Mode
+        echo -e "
+        $YELLOW 1.$BLUE Expert Mode$END
+        $YELLOW 2.$BLUE Assisté Mode$END
         "
         echo "Vous pouvez lancer le programme avec les commandes \"./REPLicator -a\" pour le mode assisté et \"REPLicator -e\" pour le mode expert."
         echo -n "[Default 2] : "

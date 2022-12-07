@@ -8,6 +8,7 @@ sudo apt install  python3
 echo -e "       - curl"
 sudo apt install curl
 echo -e "       - git"
+sudo apt install git
 
 echo -e "       - clone du dépot"
 cd /etc

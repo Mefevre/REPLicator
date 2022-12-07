@@ -18,8 +18,6 @@ Outils requis pour le programme :
 - curl
 - lolcat
 
-Vous pouvez installer toutes ces dépendances via `install.sh`
-
 ---
 ## Installation
 Vous pouvez installer le programme via le script `install.sh` en mode sudo.

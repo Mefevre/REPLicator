@@ -8,4 +8,8 @@ sudo apt install  python3
 echo -e "       - curl"
 sudo apt install curl
 
+echo -e "       - clone du dépot"
+git clone https://github.com/Mefevre/REPLicator.git
+
+
 echo -e "Installation complette !"

@@ -48,8 +48,8 @@ exec() {
                 # Execution de nmap pour le scan IP
                 sudo nmap -sP ${REPL_var["TARGET"]}/${REPL_var["mask"]}
             else
-                # Execution de NMAP avec les options -sS=TCP SYNK -sU=SCAN UDP -Pn=NO PING -v=verbose -O=detection OS -p=PORT
-                sudo nmap -sS -sU -Pn -v -O -p ${REPL_var["PORT"]} ${REPL_var["TARGET"]} -oN ${REPL_var["OUTPUTFILE"]}
+                # Execution de NMAP avec les options -sS=TCP SYNK -sU=SCAN UDP -sV=version service -Pn=NO PING -v=verbose -O=detection OS -p=PORT
+                sudo nmap -sS -sU -sV -Pn -v -O -p ${REPL_var["PORT"]} ${REPL_var["TARGET"]} -oN ${REPL_var["OUTPUTFILE"]}
             fi
             ;;
         gobuster)

@@ -9,7 +9,9 @@ echo -e "       - curl"
 sudo apt install curl
 
 echo -e "       - clone du dépot"
-git clone https://github.com/Mefevre/REPLicator.git
-
+cd /etc
+sudo git clone https://github.com/Mefevre/REPLicator.git
+sudo ln -s /etc/REPLicator/REPLicator.sh /usr/bin/REPLicator
+sudo chmod 770 /usr/bin/REPLicator 
 
 echo -e "Installation complette !"

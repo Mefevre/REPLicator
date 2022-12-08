@@ -20,7 +20,7 @@ Outils requis pour le programme :
 
 ---
 ## Installation
-Vous pouvez installer le programme via le script `install.sh` en mode sudo.
+Vous pouvez installer le programme en clonant dépot (git clone ou zip), puis en executant le script `install.sh` en mode sudo.
 Le script va installer tout les pré-requis qu'a besoin de programme.
 
 ---

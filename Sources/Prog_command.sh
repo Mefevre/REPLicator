@@ -141,7 +141,65 @@ install() {
 
 # Show doc prog
 help() {
-    //
+    figlet "REPLicator v$VERSION " | lolcat
+    echo -e "
+Usage : 
+    $PURPLE COMMAND$YELLOW <$BLUE programme $YELLOW> <$BLUE option $YELLOW>$END
+    $PURPLE COMMAND$YELLOW <$BLUE parametre $YELLOW>$END
+
+COMMAND :
+    $PURPLE SET$CYAN : Editer la valeur d'une variable$END
+    $PURPLE DEL$CYAN : Supprimer la valeur d'une variable$END
+    $PURPLE SHOW$CYAN : Afficher toutes les variables$END
+    $PURPLE EXEC$CYAN : Executer un programme issue de la liste$END
+    $PURPLE LIST$CYAN : Lister les programmes compatiblent$END
+    $PURPLE INSTALL$CYAN : Installer un programme géré par le script$END
+    $PURPLE HELP$CYAN : Afficher l'aide$END
+    $PURPLE MODE$CYAN : Changer d'expériance utilisateur (assité <=> expert)$END
+    $PURPLE METEO$CYAN : Affichier ma méteo local$END
+    $PURPLE COOL$CYAN : ...$END
+    $PURPLE q | exit | quit$CYAN : Quitter le programme$END
+
+PROGRAMMES
+    $BLUE NMAP $YELLOW<OPTION>$END
+        option:
+            - $YELLOW PORT$CYAN : Effectue un scan sur les ports d'un hote$END $GREEN (default)$END 
+            - $YELLOW IP$CYAN : Effectue un scan sur un reseau IP$END
+    $BLUE GODUSTER $YELLOW<OPTION>$END
+        option
+            - $YELLOW DIR$CYAN : Effectue une découverte de l'arborescence d'un site $END $GREEN (default)$END 
+            - $YELLOW DNS$CYAN : Effectue une découverte des sous-domaine DNS$END
+    $BLUE SQLMAP$CYAN : Scanne une BDD et remonte les failles a partir d'une URL$END
+    $BLUE MEDUSA$CYAN : Effectue un brut force sur différnates méthodes d'authentification (SSh, RDP, ...)$END
+
+VARIABLE D'ENVIRONEMENT
+    $YELLOW TARGET$CYAN => Cible de l'attaque
+    $YELLOW PORT$CYAN => Port ou plange de port
+    $YELLOW OUTPUTFILE$CYAN => Fichier de sortie des programmes
+    $YELLOW mode$CYAN => Mode d'execution du programme$END
+    du programme NMAP
+        $YELLOW masque reseau$CYAN => Masque du sous reseau$GREEN (default : 24)$END
+    du programme SQLMAP
+        $YELLOW output_dump$CYAN => Format de sortie du fichier dump$GREEN (default : html)$END
+    du programme GOBUSTER
+        $YELLOW wordlist_dir$CYAN => Fichier d'entrée de wordlist$GREEN (default : ./Sources/SecLists-master/Discovery/Web-Content/common.txt)
+        $YELLOW wordlist_dns$CYAN => Fichier d'entrée de wordlist$GREEN (default : ./Sources/SecLists-master/Discovery/DNS/shubs-subdomains.txt)
+        $YELLOW threads$CYAN => Nombre threads par processus$END
+    du programme MEDUSA
+        $YELLOW module$CYAN => Nom du module a utilisé$GREEN (default : ssh)
+        $YELLOW list_hosts$CYAN => Fichier d'entrée d'hotes
+        $YELLOW list_users$CYAN => Fichier d'entrée d'utilisateurs$GREEN (default : ./Sources/SecLists-master/Usernames/Honeypot-Captures/multiplesources-users-fabian-fingerle.de.txt)
+        $YELLOW list_password$CYAN => Fichier d'entrée de mot de passe$GREEN (default : ./Sources/Sources/SecLists-master/Passwords/Honeypot-Captures/multiplesources-passwords-fabian-fingerle.de.txt)$END
+    
+EXEMPLE
+    exec nmap
+    list 
+    list gobuster
+    install sqlmap
+    set TARGET monsite.fr
+    del PORT
+    exec gobuster DNS
+    "
 }
 
 # Switch mode between assiste <=> expert

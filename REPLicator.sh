@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SET VAR SCRIPT
-VERSION="1.0.0"
+VERSION=" 1 . 0"
 REPL_script_path="$(dirname $(readlink -f $0))"
 exit_mod=1
 declare -A REPL_var=( ['mode']="" ['OUTPUTFILE']="/dev/null" ['output_dump']="html" ['wordlist_dir']="$REPL_script_path/Sources/SecLists-master/Discovery/Web-Content/common.txt" ['wordlist_dns']="$REPL_script_path/Sources/SecLists-master/Discovery/DNS/shubs-subdomains.txt" ['threads']="100" ['mask']="24" ['TARGET']="" ['PORT']="" ['list_hosts']="" ['list_users']="$REPL_script_path/Sources/SecLists-master/Usernames/top-usernames-shortlist.txt" ['list_password']="$REPL_script_path/Sources/SecLists-master/Passwords/Common-Credentials/best1050.txt" ['module']="ssh" )
@@ -15,7 +15,7 @@ ROSE='\033[1;31m'
 WHITE='\033[0;37m'
 YELLOW='\033[0;33m'
 PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
+CYAN='\033[38;5;37m'
 BLACK='\033[0;30m'
 END='\033[m'
 

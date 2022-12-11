@@ -46,19 +46,17 @@ exec() {
         nmap)
             if [[ "$2" == "IP" ]]; then
                 # Execution de nmap pour le scan IP
-                sudo nmap -sP ${REPL_var["TARGET"]}/${REPL_var["mask"]}
+                sudo nmap -sP ${REPL_var["TARGET"]}/${REPL_var["mask"]} -oN ${REPL_var["OUTPUTFILE"]}
             else
                 # Execution de NMAP avec les options -sS=TCP SYNK -sU=SCAN UDP -sV=version service -Pn=NO PING -v=verbose -O=detection OS -p=PORT
-                sudo nmap -sS -sU -sV -Pn -v -O -p ${REPL_var["PORT"]} ${REPL_var["TARGET"]} -oN ${REPL_var["OUTPUTFILE"]}
+                sudo nmap -sS -sV -Pn -v -O -p ${REPL_var["PORT"]} ${REPL_var["TARGET"]} -oN ${REPL_var["OUTPUTFILE"]}
             fi
             ;;
         gobuster)
             if [[ "$2" == "dns" ]]; then
-                gobuster dns -d ${REPL_var["TARGET"]} -t ${REPL_var["threads"]} -w ${REPL_var["wordlist_dns"]}
-            elif [[ "$2" == "dir" ]]; then
-                gobuster dir -k -u ${REPL_var["TARGET"]} -t ${REPL_var["threads"]} -w ${REPL_var["wordlist_dir"]} --random-agent -b 302,404 -d
+                gobuster dns -d ${REPL_var["TARGET"]} -t ${REPL_var["threads"]} -w ${REPL_var["wordlist_dns"]} -o ${REPL_var["OUTPUTFILE"]}
             else
-                echo -e "$RED $2 : PARAMETRE INCORRECT$END"
+                gobuster dir -k -u ${REPL_var["TARGET"]} -t ${REPL_var["threads"]} -w ${REPL_var["wordlist_dir"]} --random-agent -b 302,404 -d -o ${REPL_var["OUTPUTFILE"]}
             fi
             ;;
         sqlmap)
@@ -67,10 +65,10 @@ exec() {
             ;;
         medusa)
             if [[ ${REPL_var["list_hosts"]} == "" ]]; then
-                medusa -t 50 -h ${REPL_var["TARGET"]} -U ${REPL_var["list_users"]} -P ${REPL_var["list_password"]} -M ${REPL_var["module"]}
+                medusa -t ${REPL_var["threads"]} -h ${REPL_var["TARGET"]} -U ${REPL_var["list_users"]} -P ${REPL_var["list_password"]} -M ${REPL_var["module"]} -O ${REPL_var["OUTPUTFILE"]}
                 return 0
             fi
-            medusa -t 50 -H ${REPL_var["list_hosts"]} -U ${REPL_var["list_users"]} -P ${REPL_var["list_password"]} -M ${REPL_var["module"]}
+            medusa -t ${REPL_var["threads"]} -H ${REPL_var["list_hosts"]} -U ${REPL_var["list_users"]} -P ${REPL_var["list_password"]} -M ${REPL_var["module"]} -O ${REPL_var["OUTPUTFILE"]}
             ;;
     esac
 }
